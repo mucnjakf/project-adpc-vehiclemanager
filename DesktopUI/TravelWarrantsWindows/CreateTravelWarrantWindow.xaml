@@ -1,0 +1,74 @@
+﻿<Window x:Class="DesktopUI.TravelWarrantsWindows.CreateTravelWarrantWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopUI.TravelWarrantsWindows"
+        mc:Ignorable="d"
+        Title="Create Travel Warrant" Height="1080" Width="1920" Background="#333" Foreground="White" FontWeight="Thin" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontSize="36" Loaded="Window_Loaded" Activated="Window_Activated">
+    <StackPanel>
+        <TextBlock Text="Create" FontSize="64" HorizontalAlignment="Center" Margin="0 30 0 40"/>
+        
+        <Border  BorderBrush="White" BorderThickness="1" Height="650" Width="1500">
+            <TabControl HorizontalAlignment="Center" VerticalAlignment="Center" Height="650" Width="1500" FontSize="36" Background="#555555">
+                <TabItem Header="Travel Warrant" Width="498.5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Status:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 80 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Date:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="1" Grid.Row="3" Text="Driver:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="1" Grid.Row="4" Text="Vehicle:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+
+                        <ComboBox Grid.Column="2" Grid.Row="0" x:Name="CbStatus" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 80 10 10" Height="50" Width="350" FontSize="28">
+                            <ComboBoxItem x:Name="CbiOpen" Content="Open" IsSelected="True" />
+                            <ComboBoxItem x:Name="CbiClosed" Content="Closed" />
+                        </ComboBox>
+                        <TextBox Grid.Column="2" Grid.Row="1" x:Name="TbDate" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 30 10 10" Height="50" Width="350" FontSize="28" />
+                        <TextBox Grid.Column="2" Grid.Row="2" x:Name="TbTime" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 30 10 10" Height="50" Width="350" FontSize="28" />
+                        <ComboBox Grid.Column="2" Grid.Row="3" x:Name="CbDrivers" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 30 10 10" Height="50" Width="350" FontSize="28" />
+                        <ComboBox Grid.Column="2" Grid.Row="4" x:Name="CbVehicles" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 30 10 10" Height="50" Width="350" FontSize="28" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Fuel Cost" Width="499">
+                    <StackPanel Margin="0 30">
+                        <Border BorderBrush="White" BorderThickness="1" Width="1350" Height="410">
+                            <ScrollViewer>
+                                <StackPanel x:Name="SpFuelCosts" Orientation="Vertical" />
+                            </ScrollViewer>
+                        </Border>
+                        <Button x:Name="BtnCreateFuelCost" Content="Create Fuel Cost" Width="270" Height="70" FontSize="30" Margin="0 50" Click="BtnCreateFuelCost_Click" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Travel Route" Width="498.5">
+                    <StackPanel Margin="0 30">
+                        <Border BorderBrush="White" BorderThickness="1" Width="1350" Height="410">
+                            <ScrollViewer>
+                                <StackPanel x:Name="SpTravelRoutes" Orientation="Vertical" />
+                            </ScrollViewer>
+                        </Border>
+                        <Button x:Name="BtnCreateTravelRoute" Content="Create Travel Route" Width="270" Height="70" FontSize="30" Margin="0 50" Click="BtnCreateTravelRoute_Click" />
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Border>
+
+        <Button x:Name="BtnConfirm" Content="Confirm" Width="250" Height="50" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 30 0 10" Background="Green" Foreground="White" FontWeight="Thin" Click="BtnConfirm_Click"/>
+
+        <Button x:Name="BtnCancel" Content="Cancel" Width="250" Height="50" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 10"  Background="Red" Foreground="White" FontWeight="Thin" Click="BtnCancel_Click"/>
+    </StackPanel>
+</Window>

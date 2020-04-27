@@ -1,0 +1,49 @@
+﻿<Window x:Class="DesktopUI.VehiclesWindows.CreateVehicleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopUI.VehiclesWindows"
+        mc:Ignorable="d"
+        Title="Create Vehicle" Height="710" Width="700" Background="#333" Foreground="White" FontWeight="Thin" WindowStartupLocation="CenterScreen" FontSize="25">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Text="Create" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="64" Margin="0 40"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Make:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Model:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Column="1" Grid.Row="3" Text="Year of manufacture:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="Initial mileage:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="Availability:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"/>
+
+        <TextBox Grid.Column="2" Grid.Row="1" x:Name="TbMake" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Height="40" Width="350" />
+        <TextBox Grid.Column="2" Grid.Row="2" x:Name="TbModel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Height="40" Width="350" />
+        <TextBox Grid.Column="2" Grid.Row="3" x:Name="TbYearOfManufacture" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Height="40" Width="350" />
+        <TextBox Grid.Column="2" Grid.Row="4" x:Name="TbInitialMileage" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Height="40" Width="350" />
+        <ComboBox Grid.Column="2" Grid.Row="5" x:Name="CbAvailable" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Height="40" Width="350">
+            <ComboBoxItem x:Name="CbiAvailable" Content="Available" IsSelected="True" />
+            <ComboBoxItem x:Name="CbiNotAvailable" Content="Not available" />
+        </ComboBox>
+
+        <Button Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" x:Name="BtnConfirm" Content="Confirm" Width="250" Height="50" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 50 0 10" Background="Green" Foreground="White" FontWeight="Thin" Click="BtnConfirm_Click"/>
+
+        <Button Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" x:Name="BtnCancel" Content="Cancel" Width="250" Height="50" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 10"  Background="Red" Foreground="White" FontWeight="Thin" Click="BtnCancel_Click"/>
+    </Grid>
+</Window>
