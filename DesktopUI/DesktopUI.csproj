@@ -104,6 +104,9 @@
     <Compile Include="TravelWarrantsWindows\CreateTravelWarrantWindow.xaml.cs">
       <DependentUpon>CreateTravelWarrantWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TravelWarrantsWindows\EditTravelWarrantWindow.xaml.cs">
+      <DependentUpon>EditTravelWarrantWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TravelWarrantsWindows\ShowTravelWarrantWindow.xaml.cs">
       <DependentUpon>ShowTravelWarrantWindow.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TravelWarrantsWindows\CreateTravelWarrantWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TravelWarrantsWindows\EditTravelWarrantWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

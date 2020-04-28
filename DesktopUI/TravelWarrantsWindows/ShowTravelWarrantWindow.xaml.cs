@@ -65,7 +65,7 @@ namespace DesktopUI.TravelWarrantsWindows
             LblMake.Text = vehicle.Make;
             LblModel.Text = vehicle.Model;
             LblYearOfManufacture.Text = vehicle.YearOfManufacture.ToString();
-            LblInitialMileage.Text = vehicle.YearOfManufacture.ToString();
+            LblInitialMileage.Text = vehicle.InitialMileage.ToString();
             LblAvailability.Text = vehicle.Available == true ? "Available" : "Not available";
 
             // Fuel Cost

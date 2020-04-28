@@ -53,7 +53,8 @@ namespace DesktopUI.CustomControls
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            EditTravelWarrantWindow editTravelWarrantWindow = new EditTravelWarrantWindow(travelWarrant);
+            editTravelWarrantWindow.Show();
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

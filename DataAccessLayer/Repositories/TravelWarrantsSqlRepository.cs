@@ -122,7 +122,37 @@ namespace DataAccessLayer.Repositories
 
         public override bool Update(TravelWarrant travelWarrant)
         {
-            throw new NotImplementedException();
+            int numOfRowsAffected = 0;
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "UpdateTravelWarrant";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@WarrantStatus", SqlDbType.NVarChar).Value = travelWarrant.WarrantStatus;
+                    cmd.Parameters.Add("@DateIssued", SqlDbType.Date).Value = travelWarrant.DateIssued;
+                    cmd.Parameters.Add("@TimeIssued", SqlDbType.Time).Value = travelWarrant.TimeIssued;
+                    cmd.Parameters.Add("@DriverId", SqlDbType.Int).Value = travelWarrant.DriverId;
+                    cmd.Parameters.Add("@VehicleId", SqlDbType.Int).Value = travelWarrant.VehicleId;
+                    cmd.Parameters.Add("@FuelCostId", SqlDbType.Int).Value = travelWarrant.FuelCostId;
+                    cmd.Parameters.Add("@TravelRouteId", SqlDbType.Int).Value = travelWarrant.TravelRouteId;
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = travelWarrant.Id;
+
+                    numOfRowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+            if (numOfRowsAffected > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

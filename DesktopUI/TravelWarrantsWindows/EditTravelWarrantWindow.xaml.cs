@@ -21,9 +21,9 @@ using System.Windows.Shapes;
 namespace DesktopUI.TravelWarrantsWindows
 {
     /// <summary>
-    /// Interaction logic for CreateTravelWarrantWindow.xaml
+    /// Interaction logic for EditTravelWarrantWindow.xaml
     /// </summary>
-    public partial class CreateTravelWarrantWindow : Window
+    public partial class EditTravelWarrantWindow : Window
     {
         DriversSqlRepository driversSqlRepository;
         VehiclesSqlRepository vehiclesSqlRepository;
@@ -31,7 +31,9 @@ namespace DesktopUI.TravelWarrantsWindows
         TravelRoutesSqlRepository travelRoutesSqlRepository;
         TravelWarrantsSqlRepository travelWarrantsSqlRepository;
 
-        public CreateTravelWarrantWindow()
+        private TravelWarrant travelWarrant;
+
+        public EditTravelWarrantWindow(TravelWarrant travelWarrant)
         {
             InitializeComponent();
 
@@ -40,86 +42,17 @@ namespace DesktopUI.TravelWarrantsWindows
             fuelCostsSqlRepository = new FuelCostsSqlRepository();
             travelRoutesSqlRepository = new TravelRoutesSqlRepository();
             travelWarrantsSqlRepository = new TravelWarrantsSqlRepository();
+
+            this.travelWarrant = travelWarrant;
+
+            LoadTravelWarrantToWindow(travelWarrant);
         }
 
-        private void BtnConfirm_Click(object sender, RoutedEventArgs e)
+        private void LoadTravelWarrantToWindow(TravelWarrant travelWarrant)
         {
-            CreateTravelWarrant();
-        }
-
-        // && fcp.RbFcSelect.IsChecked == true && trp.RbTrSelect.IsChecked == true
-
-        private void CreateTravelWarrant()
-        {
-            if (CbStatus.Text != string.Empty && TbDate.Text != string.Empty && TbTime.Text != string.Empty) 
-            {
-                if (DateTime.TryParse(TbDate.Text, out DateTime date) && (TimeSpan.TryParse(TbTime.Text, out TimeSpan time)))
-                {
-                    if (Regex.IsMatch(TbDate.Text, @"\d\d\d\d-\d\d-\d\d") && Regex.IsMatch(TbTime.Text, @"\d\d:\d\d:\d\d"))
-                    {
-                        int driverId = int.Parse(CbDrivers.Text.Substring(0, CbDrivers.Text.IndexOf(' ')));
-                        int vehicleId = int.Parse(CbVehicles.Text.Substring(0, CbVehicles.Text.IndexOf(' ')));
-                        int fuelCostId = 0;
-                        int travelRouteId = 0;
-
-                        foreach (FuelCostPanel fuelCostPanel in SpFuelCosts.Children)
-                        {
-                            if (fuelCostPanel.RbFcSelect.IsChecked == true)
-                            {
-                                fuelCostId = int.Parse(fuelCostPanel.LblId.Text);
-                            }
-                        }
-
-                        foreach (TravelRoutePanel travelRoutePanel in SpTravelRoutes.Children)
-                        {
-                            if (travelRoutePanel.RbTrSelect.IsChecked == true)
-                            {
-                                travelRouteId = int.Parse(travelRoutePanel.LblId.Text);
-                            }
-                        }
-
-                        TravelWarrant createdTravelWarrant = new TravelWarrant
-                        {
-                            WarrantStatus = CbStatus.Text,
-                            DateIssued = date,
-                            TimeIssued = time,
-                            DriverId = driverId,
-                            VehicleId = vehicleId,
-                            FuelCostId = fuelCostId,
-                            TravelRouteId = travelRouteId
-                        };
-
-                        bool success = travelWarrantsSqlRepository.Create(createdTravelWarrant);
-
-                        if (success)
-                        {
-                            MessageBox.Show("Success");
-                            Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Fail");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Date format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Date format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
-                }
-            }
-            else
-            {
-                MessageBox.Show("All input fields are required");
-            }
-        }
-
-        private void BtnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
+            CbStatus.Text = travelWarrant.WarrantStatus;
+            TbDate.Text = travelWarrant.DateIssued.ToShortDateString();
+            TbTime.Text = travelWarrant.TimeIssued.ToString();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -127,7 +60,6 @@ namespace DesktopUI.TravelWarrantsWindows
             LoadDriversToComboBox();
             LoadVehiclesToComboBox();
         }
-
         private void LoadVehiclesToComboBox()
         {
             CbVehicles.ItemsSource = vehiclesSqlRepository.ReadAll();
@@ -136,12 +68,6 @@ namespace DesktopUI.TravelWarrantsWindows
         private void LoadDriversToComboBox()
         {
             CbDrivers.ItemsSource = driversSqlRepository.ReadAll();
-        }
-
-        private void BtnCreateFuelCost_Click(object sender, RoutedEventArgs e)
-        {
-            CreateFuelCostWindow createFuelCostWindow = new CreateFuelCostWindow();
-            createFuelCostWindow.Show();
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -177,11 +103,95 @@ namespace DesktopUI.TravelWarrantsWindows
                 SpFuelCosts.Children.Add(fuelCostPanel);
             }
         }
+        private void BtnCreateFuelCost_Click(object sender, RoutedEventArgs e)
+        {
+            CreateFuelCostWindow createFuelCostWindow = new CreateFuelCostWindow();
+            createFuelCostWindow.Show();
+        }
 
         private void BtnCreateTravelRoute_Click(object sender, RoutedEventArgs e)
         {
             CreateTravelRouteWindow createTravelRouteWindow = new CreateTravelRouteWindow();
             createTravelRouteWindow.Show();
+        }
+
+        private void BtnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateTravelWarrant();
+        }
+
+        private void UpdateTravelWarrant()
+        {
+            if(CbStatus.Text != string.Empty && TbDate.Text != string.Empty && TbTime.Text != string.Empty)
+            {
+                if (DateTime.TryParse(TbDate.Text, out DateTime date) && (TimeSpan.TryParse(TbTime.Text, out TimeSpan time)))
+                {
+                    if (Regex.IsMatch(TbDate.Text, @"\d\d\d\d-\d\d-\d\d") && Regex.IsMatch(TbTime.Text, @"\d\d:\d\d:\d\d"))
+                    {
+                        int driverId = int.Parse(CbDrivers.Text.Substring(0, CbDrivers.Text.IndexOf(' ')));
+                        int vehicleId = int.Parse(CbVehicles.Text.Substring(0, CbVehicles.Text.IndexOf(' ')));
+                        int fuelCostId = 0;
+                        int travelRouteId = 0;
+
+                        foreach (FuelCostPanel fuelCostPanel in SpFuelCosts.Children)
+                        {
+                            if (fuelCostPanel.RbFcSelect.IsChecked == true)
+                            {
+                                fuelCostId = int.Parse(fuelCostPanel.LblId.Text);
+                            }
+                        }
+
+                        foreach (TravelRoutePanel travelRoutePanel in SpTravelRoutes.Children)
+                        {
+                            if (travelRoutePanel.RbTrSelect.IsChecked == true)
+                            {
+                                travelRouteId = int.Parse(travelRoutePanel.LblId.Text);
+                            }
+                        }
+
+                        TravelWarrant updatedTravelWarrant = new TravelWarrant
+                        {
+                            Id = travelWarrant.Id,
+                            WarrantStatus = CbStatus.Text,
+                            DateIssued = date,
+                            TimeIssued = time,
+                            DriverId = driverId,
+                            VehicleId = vehicleId,
+                            FuelCostId = fuelCostId,
+                            TravelRouteId = travelRouteId
+                        };
+
+                        bool success = travelWarrantsSqlRepository.Update(updatedTravelWarrant);
+
+                        if (success)
+                        {
+                            MessageBox.Show("Success");
+                            Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Fail");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Date format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Date format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
+                }
+            }
+            else
+            {
+                MessageBox.Show("All input fields are required");
+            }
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
