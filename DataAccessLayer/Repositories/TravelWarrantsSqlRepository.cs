@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DataAccessLayer.Repositories
 {
@@ -18,33 +19,56 @@ namespace DataAccessLayer.Repositories
         {
             int numOfRowsAffected = 0;
 
+            SqlTransaction sqlTransaction = null;
+
             using (SqlConnection con = new SqlConnection(cs))
             {
+                con.InfoMessage += new SqlInfoMessageEventHandler(Con_InfoMessage);
+                con.FireInfoMessageEventOnUserErrors = true;
+
                 con.Open();
 
-                using (SqlCommand cmd = con.CreateCommand())
+                sqlTransaction = con.BeginTransaction();
+
+                try
                 {
-                    cmd.CommandText = "InsertTravelWarrant";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.Transaction = sqlTransaction;
 
-                    cmd.Parameters.Add("@WarrantStatus", SqlDbType.NVarChar).Value = travelWarrant.WarrantStatus;
-                    cmd.Parameters.Add("@DateIssued", SqlDbType.Date).Value = travelWarrant.DateIssued;
-                    cmd.Parameters.Add("@TimeIssued", SqlDbType.Time).Value = travelWarrant.TimeIssued;
-                    cmd.Parameters.Add("@DriverId", SqlDbType.Int).Value = travelWarrant.DriverId;
-                    cmd.Parameters.Add("@VehicleId", SqlDbType.Int).Value = travelWarrant.VehicleId;
-                    cmd.Parameters.Add("@FuelCostId", SqlDbType.Int).Value = travelWarrant.FuelCostId;
-                    cmd.Parameters.Add("@TravelRouteId", SqlDbType.Int).Value = travelWarrant.TravelRouteId;
+                        cmd.CommandText = "InsertTravelWarrant";
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    numOfRowsAffected = cmd.ExecuteNonQuery();
+                        cmd.Parameters.Add("@WarrantStatus", SqlDbType.NVarChar).Value = travelWarrant.WarrantStatus;
+                        cmd.Parameters.Add("@DateIssued", SqlDbType.Date).Value = travelWarrant.DateIssued;
+                        cmd.Parameters.Add("@TimeIssued", SqlDbType.Time).Value = travelWarrant.TimeIssued;
+                        cmd.Parameters.Add("@DriverId", SqlDbType.Int).Value = travelWarrant.DriverId;
+                        cmd.Parameters.Add("@VehicleId", SqlDbType.Int).Value = travelWarrant.VehicleId;
+                        cmd.Parameters.Add("@FuelCostId", SqlDbType.Int).Value = travelWarrant.FuelCostId;
+                        cmd.Parameters.Add("@TravelRouteId", SqlDbType.Int).Value = travelWarrant.TravelRouteId;
+
+                        numOfRowsAffected = cmd.ExecuteNonQuery();
+                    }
+
+                    sqlTransaction.Commit();
+
+                    if (numOfRowsAffected > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-            }
-            if (numOfRowsAffected > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+
+                    sqlTransaction.Rollback();
+
+                    return false;
+                }
             }
         }
 
@@ -52,33 +76,56 @@ namespace DataAccessLayer.Repositories
         {
             int numOfRowsAffected = 0;
 
+            SqlTransaction sqlTransaction = null;
+
             using (SqlConnection con = new SqlConnection(cs))
             {
+                con.InfoMessage += new SqlInfoMessageEventHandler(Con_InfoMessage);
+                con.FireInfoMessageEventOnUserErrors = true;
+
                 con.Open();
 
-                using (SqlCommand cmd = con.CreateCommand())
+                sqlTransaction = con.BeginTransaction();
+
+                try
                 {
-                    cmd.CommandText = "DeleteTravelWarrant";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.Transaction = sqlTransaction;
 
-                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                        cmd.CommandText = "DeleteTravelWarrant";
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    numOfRowsAffected = cmd.ExecuteNonQuery();
+                        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                        numOfRowsAffected = cmd.ExecuteNonQuery();
+                    }
+
+                    sqlTransaction.Commit();
+
+                    if (numOfRowsAffected > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-            }
-            if (numOfRowsAffected > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+
+                    sqlTransaction.Rollback();
+
+                    return false;
+                }
             }
         }
 
         public override List<TravelWarrant> ReadAll()
         {
-            List<TravelWarrant> travelWarrants= new List<TravelWarrant>();
+            List<TravelWarrant> travelWarrants = new List<TravelWarrant>();
 
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -124,35 +171,63 @@ namespace DataAccessLayer.Repositories
         {
             int numOfRowsAffected = 0;
 
+            SqlTransaction sqlTransaction = null;
+
             using (SqlConnection con = new SqlConnection(cs))
             {
+                con.InfoMessage += new SqlInfoMessageEventHandler(Con_InfoMessage);
+                con.FireInfoMessageEventOnUserErrors = true;
+
                 con.Open();
 
-                using (SqlCommand cmd = con.CreateCommand())
+                sqlTransaction = con.BeginTransaction();
+
+                try
                 {
-                    cmd.CommandText = "UpdateTravelWarrant";
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.Transaction = sqlTransaction;
 
-                    cmd.Parameters.Add("@WarrantStatus", SqlDbType.NVarChar).Value = travelWarrant.WarrantStatus;
-                    cmd.Parameters.Add("@DateIssued", SqlDbType.Date).Value = travelWarrant.DateIssued;
-                    cmd.Parameters.Add("@TimeIssued", SqlDbType.Time).Value = travelWarrant.TimeIssued;
-                    cmd.Parameters.Add("@DriverId", SqlDbType.Int).Value = travelWarrant.DriverId;
-                    cmd.Parameters.Add("@VehicleId", SqlDbType.Int).Value = travelWarrant.VehicleId;
-                    cmd.Parameters.Add("@FuelCostId", SqlDbType.Int).Value = travelWarrant.FuelCostId;
-                    cmd.Parameters.Add("@TravelRouteId", SqlDbType.Int).Value = travelWarrant.TravelRouteId;
-                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = travelWarrant.Id;
+                        cmd.CommandText = "UpdateTravelWarrant";
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    numOfRowsAffected = cmd.ExecuteNonQuery();
+                        cmd.Parameters.Add("@WarrantStatus", SqlDbType.NVarChar).Value = travelWarrant.WarrantStatus;
+                        cmd.Parameters.Add("@DateIssued", SqlDbType.Date).Value = travelWarrant.DateIssued;
+                        cmd.Parameters.Add("@TimeIssued", SqlDbType.Time).Value = travelWarrant.TimeIssued;
+                        cmd.Parameters.Add("@DriverId", SqlDbType.Int).Value = travelWarrant.DriverId;
+                        cmd.Parameters.Add("@VehicleId", SqlDbType.Int).Value = travelWarrant.VehicleId;
+                        cmd.Parameters.Add("@FuelCostId", SqlDbType.Int).Value = travelWarrant.FuelCostId;
+                        cmd.Parameters.Add("@TravelRouteId", SqlDbType.Int).Value = travelWarrant.TravelRouteId;
+                        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = travelWarrant.Id;
+
+                        numOfRowsAffected = cmd.ExecuteNonQuery();
+                    }
+
+                    sqlTransaction.Commit();
+
+                    if (numOfRowsAffected > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+
+                    sqlTransaction.Rollback();
+
+                    return false;
                 }
             }
-            if (numOfRowsAffected > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        }
+
+        private static void Con_InfoMessage(object sender, SqlInfoMessageEventArgs args)
+        {
+            MessageBox.Show($"InfoMessage Handled Error Level - { args.Errors[0].Class }: { args.Message } ");
         }
     }
 }
