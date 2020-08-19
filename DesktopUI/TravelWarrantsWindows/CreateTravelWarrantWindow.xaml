@@ -61,7 +61,10 @@
                                 <StackPanel x:Name="SpTravelRoutes" Orientation="Vertical" />
                             </ScrollViewer>
                         </Border>
-                        <Button x:Name="BtnCreateTravelRoute" Content="Create Travel Route" Width="270" Height="70" FontSize="30" Margin="0 50" Click="BtnCreateTravelRoute_Click" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="BtnCreateTravelRoute" Content="Create Travel Route" Width="270" Height="70" FontSize="30" Margin="400 0 100 0" Click="BtnCreateTravelRoute_Click" />
+                            <Button x:Name="BtnImportTravelRouteFromXml" Content="Import Travel Route From XML" Width="450" Height="70" FontSize="30" Margin="0 50" Click="BtnImportTravelRouteFromXml_Click" />
+                        </StackPanel>
                     </StackPanel>
                 </TabItem>
             </TabControl>

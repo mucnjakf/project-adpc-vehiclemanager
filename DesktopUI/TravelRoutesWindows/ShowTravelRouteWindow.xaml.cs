@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace DesktopUI.TravelRoutesWindows
 {
@@ -20,9 +21,13 @@ namespace DesktopUI.TravelRoutesWindows
     /// </summary>
     public partial class ShowTravelRouteWindow : Window
     {
+        private TravelRoute travelRoute;
+
         public ShowTravelRouteWindow(TravelRoute travelRoute)
         {
             InitializeComponent();
+
+            this.travelRoute = travelRoute;
 
             LoadTravelRouteValues(travelRoute);
         }
@@ -41,6 +46,60 @@ namespace DesktopUI.TravelRoutesWindows
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
+
+        private void BtnExportToXml_Click(object sender, RoutedEventArgs e)
+        {
+            ExportTravelRouteToXml();
+        }
+
+        private void ExportTravelRouteToXml()
+        {
+            XmlWriterSettings xmlSettings = new XmlWriterSettings()
+            {
+                Indent = true
+            };
+            XmlWriter xmlWriter = XmlWriter.Create(@"..\..\..\DataForExport\TravelRoute.xml", xmlSettings);
+
+            xmlWriter.WriteStartDocument();
+
+            xmlWriter.WriteStartElement("TravelRoute");
+            xmlWriter.WriteAttributeString("Id", travelRoute.Id.ToString());
+
+            xmlWriter.WriteStartElement("DateIssued");
+            xmlWriter.WriteString(travelRoute.DateIssued.ToShortDateString());
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("TimeIssued");
+            xmlWriter.WriteString(travelRoute.TimeIssued.ToString());
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("Origin");
+            xmlWriter.WriteString(travelRoute.Origin.ToString());
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("Destination");
+            xmlWriter.WriteString(travelRoute.Destination.ToString());
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("KilometersTraveled");
+            xmlWriter.WriteString(travelRoute.KilometersTraveled.ToString());
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("AverageSpeed");
+            xmlWriter.WriteString(travelRoute.AverageSpeed.ToString());
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("SpentFuel");
+            xmlWriter.WriteString(travelRoute.SpentFuel.ToString());
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.Close();
+
+            MessageBox.Show("Success");
             Close();
         }
     }

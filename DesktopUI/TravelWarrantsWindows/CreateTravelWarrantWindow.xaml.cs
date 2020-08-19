@@ -3,8 +3,10 @@ using DataAccessLayer.Repositories;
 using DesktopUI.CustomControls;
 using DesktopUI.FuelCostsWindows;
 using DesktopUI.TravelRoutesWindows;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace DesktopUI.TravelWarrantsWindows
 {
@@ -51,7 +54,7 @@ namespace DesktopUI.TravelWarrantsWindows
 
         private void CreateTravelWarrant()
         {
-            if (CbStatus.Text != string.Empty && TbDate.Text != string.Empty && TbTime.Text != string.Empty) 
+            if (CbStatus.Text != string.Empty && TbDate.Text != string.Empty && TbTime.Text != string.Empty)
             {
                 if (DateTime.TryParse(TbDate.Text, out DateTime date) && (TimeSpan.TryParse(TbTime.Text, out TimeSpan time)))
                 {
@@ -182,6 +185,62 @@ namespace DesktopUI.TravelWarrantsWindows
         {
             CreateTravelRouteWindow createTravelRouteWindow = new CreateTravelRouteWindow();
             createTravelRouteWindow.Show();
+        }
+
+        private void BtnImportTravelRouteFromXml_Click(object sender, RoutedEventArgs e)
+        {
+            ImportTravelRouteFromXml();
+        }
+
+        private void ImportTravelRouteFromXml()
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    XmlDocument doc = new XmlDocument();
+
+                    doc.Load(filePath);
+
+                    List<string> travelRouteData = new List<string>();
+
+                    foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+                    {
+                        travelRouteData.Add(node.InnerText);
+                    }
+
+                    DateTime dateIssued = DateTime.Parse(travelRouteData[0]);
+                    TimeSpan timeIssued = TimeSpan.Parse(travelRouteData[1]);
+                    string origin = travelRouteData[2];
+                    string destination = travelRouteData[3];
+                    float kilometersTraveled = float.Parse(travelRouteData[4]);
+                    float averageSpeed = float.Parse(travelRouteData[5]);
+                    float spentFuel = float.Parse(travelRouteData[6]);
+
+                    TravelRoute travelRoute = new TravelRoute(dateIssued, timeIssued, origin, destination, kilometersTraveled, averageSpeed, spentFuel);
+
+                    bool success = travelRoutesSqlRepository.Create(travelRoute);
+
+                    if (success)
+                    {
+                        MessageBox.Show("Success");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Fail");
+                    }
+
+                    LoadTravelRoutesToStackPanel();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

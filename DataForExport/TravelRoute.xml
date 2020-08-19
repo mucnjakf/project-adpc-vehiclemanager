@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TravelRoute Id="10">
+  <DateIssued>12/12/1203</DateIssued>
+  <TimeIssued>12:12:21</TimeIssued>
+  <Origin>Jedan</Origin>
+  <Destination>DDava</Destination>
+  <KilometersTraveled>21312</KilometersTraveled>
+  <AverageSpeed>123.123</AverageSpeed>
+  <SpentFuel>321.321</SpentFuel>
+</TravelRoute>

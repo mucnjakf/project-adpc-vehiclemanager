@@ -17,5 +17,20 @@ namespace DataAccessLayer.Models
         public float AverageSpeed { get; set; }
         public float SpentFuel { get; set; }
 
+        public TravelRoute()
+        {
+
+        }
+        
+        public TravelRoute(DateTime dateIssued, TimeSpan timeIssued, string origin, string destination, float kilometersTraveled, float averageSpeed, float spentFuel)
+        {
+            DateIssued = dateIssued;
+            TimeIssued = timeIssued;
+            Origin = origin;
+            Destination = destination;
+            KilometersTraveled = kilometersTraveled;
+            AverageSpeed = averageSpeed;
+            SpentFuel = spentFuel;
+        }
     }
 }

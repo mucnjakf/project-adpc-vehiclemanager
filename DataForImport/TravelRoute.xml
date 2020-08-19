@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TravelRoute>
+	<DateIssued>1997-05-04</DateIssued>
+	<TimeIssued>07:12:00</TimeIssued>
+	<Origin>Vinogradska</Origin>
+	<Destination>Stefanovec</Destination>
+	<KilometersTraveled>37.3</KilometersTraveled>
+	<AverageSpeed>50.3</AverageSpeed>
+	<SpentFuel>12</SpentFuel>
+</TravelRoute>
