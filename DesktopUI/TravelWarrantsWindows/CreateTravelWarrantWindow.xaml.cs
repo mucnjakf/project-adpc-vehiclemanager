@@ -43,6 +43,9 @@ namespace DesktopUI.TravelWarrantsWindows
             fuelCostsSqlRepository = new FuelCostsSqlRepository();
             travelRoutesSqlRepository = new TravelRoutesSqlRepository();
             travelWarrantsSqlRepository = new TravelWarrantsSqlRepository();
+
+            TbDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            TbTime.Text = DateTime.Now.ToString("HH:MM:ss");
         }
 
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)

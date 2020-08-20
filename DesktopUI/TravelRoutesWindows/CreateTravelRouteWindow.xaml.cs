@@ -22,13 +22,16 @@ namespace DesktopUI.TravelRoutesWindows
     /// </summary>
     public partial class CreateTravelRouteWindow : Window
     {
-        TravelRoutesSqlRepository travelRoutesSqlRepository;
+        readonly TravelRoutesSqlRepository travelRoutesSqlRepository;
 
         public CreateTravelRouteWindow()
         {
             InitializeComponent();
 
             travelRoutesSqlRepository = new TravelRoutesSqlRepository();
+
+            TbDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            TbTime.Text = DateTime.Now.ToString("HH:MM:ss");
         }
 
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)

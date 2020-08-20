@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopUI.SharedWindows"
         mc:Ignorable="d"
-        Title="Start" Height="780" Width="500" WindowStartupLocation="CenterScreen" Background="#333" Foreground="White" FontWeight="Thin">
+        Title="Start" Height="800" Width="500" WindowStartupLocation="CenterScreen" Background="#333" Foreground="White" FontWeight="Thin">
     <StackPanel>
         <TextBlock Text="Vehicle Manager" FontSize="48" HorizontalAlignment="Center" Margin="0 30" />
 
