@@ -179,5 +179,28 @@ namespace DataAccessLayer.Repositories
                 return null;
             }
         }
+
+        public override void Restore(Vehicle vehicle)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "RestoreVehicle";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = vehicle.Id;
+                    cmd.Parameters.Add("@Make", SqlDbType.NVarChar).Value = vehicle.Make;
+                    cmd.Parameters.Add("@Model", SqlDbType.NVarChar).Value = vehicle.Model;
+                    cmd.Parameters.Add("@YearOfManufacture", SqlDbType.Int).Value = vehicle.YearOfManufacture;
+                    cmd.Parameters.Add("@InitialMileage", SqlDbType.Int).Value = vehicle.InitialMileage;
+                    cmd.Parameters.Add("@Available", SqlDbType.Bit).Value = vehicle.Available;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -150,5 +150,28 @@ namespace DataAccessLayer.Repositories
             }
             return null;
         }
+
+        public override void Restore(FuelCost fuelCost)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "RestoreFuelCost";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = fuelCost.Id;
+                    cmd.Parameters.Add("@Date", SqlDbType.Date).Value = fuelCost.DateIssued;
+                    cmd.Parameters.Add("@Time", SqlDbType.Time).Value = fuelCost.TimeIssued;
+                    cmd.Parameters.Add("@Position", SqlDbType.NVarChar).Value = fuelCost.Position;
+                    cmd.Parameters.Add("@Amount", SqlDbType.Real).Value = fuelCost.Amount;
+                    cmd.Parameters.Add("@Price", SqlDbType.Money).Value = fuelCost.Price;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

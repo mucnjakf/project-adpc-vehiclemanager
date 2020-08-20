@@ -18,5 +18,10 @@ namespace DataAccessLayer.Models
         {
             return $"{Id} - {FirstName} {LastName}";
         }
+
+        public string TestPrint()
+        {
+            return $"{Id}\n{FirstName}\n{LastName}\n{PhoneNumber}\n{DriversLicenceNumber}";
+        }
     }
 }

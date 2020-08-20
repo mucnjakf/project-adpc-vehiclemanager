@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DatabaseBackup>
+  <Drivers>
+    <Driver Id="1">
+      <FirstName>pero</FirstName>
+      <LastName>peric</LastName>
+      <PhoneNumber>111-222-333-444</PhoneNumber>
+      <DriversLicenceNumber>123456789</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="2">
+      <FirstName>asd</FirstName>
+      <LastName>asd</LastName>
+      <PhoneNumber>asd-asd-asd-asd</PhoneNumber>
+      <DriversLicenceNumber>asd</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="3">
+      <FirstName>3</FirstName>
+      <LastName>3</LastName>
+      <PhoneNumber>3-3-3-3</PhoneNumber>
+      <DriversLicenceNumber>3</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="64">
+      <FirstName>Darko</FirstName>
+      <LastName>Darkic</LastName>
+      <PhoneNumber>222-333-444-555</PhoneNumber>
+      <DriversLicenceNumber>987654321</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="65">
+      <FirstName>Marko</FirstName>
+      <LastName>Markic</LastName>
+      <PhoneNumber>333-444-555-666</PhoneNumber>
+      <DriversLicenceNumber>289317981</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="66">
+      <FirstName>Lana</FirstName>
+      <LastName>Lanic</LastName>
+      <PhoneNumber>444-555-666-777</PhoneNumber>
+      <DriversLicenceNumber>429738897</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="67">
+      <FirstName>Iva</FirstName>
+      <LastName>Ivic</LastName>
+      <PhoneNumber>555-666-777-888</PhoneNumber>
+      <DriversLicenceNumber>321802308</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="68">
+      <FirstName>Jadranka</FirstName>
+      <LastName>Jadrankic</LastName>
+      <PhoneNumber>666-777-888-999</PhoneNumber>
+      <DriversLicenceNumber>123798234</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="69">
+      <FirstName>Mirko</FirstName>
+      <LastName>Mirkic</LastName>
+      <PhoneNumber>777-888-999-111</PhoneNumber>
+      <DriversLicenceNumber>123719273</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="70">
+      <FirstName>Lovorko</FirstName>
+      <LastName>Lovorkic</LastName>
+      <PhoneNumber>888-999-111-222</PhoneNumber>
+      <DriversLicenceNumber>746382948</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="71">
+      <FirstName>Robert</FirstName>
+      <LastName>Robertic</LastName>
+      <PhoneNumber>999-111-222-333</PhoneNumber>
+      <DriversLicenceNumber>390324089</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="72">
+      <FirstName>Kazo</FirstName>
+      <LastName>Kazic</LastName>
+      <PhoneNumber>112-223-334-445</PhoneNumber>
+      <DriversLicenceNumber>489213743</DriversLicenceNumber>
+    </Driver>
+    <Driver Id="73">
+      <FirstName>Irena</FirstName>
+      <LastName>Irenic</LastName>
+      <PhoneNumber>212-123-321-222</PhoneNumber>
+      <DriversLicenceNumber>987231987</DriversLicenceNumber>
+    </Driver>
+  </Drivers>
+  <Vehicles>
+    <Vehicle Id="53">
+      <Make>test</Make>
+      <Model>test</Model>
+      <YearOfManufacture>123</YearOfManufacture>
+      <InitialMileage>321</InitialMileage>
+      <Available>True</Available>
+    </Vehicle>
+  </Vehicles>
+  <TravelRoutes>
+    <TravelRoute Id="1">
+      <DateIssued>2/3/2020</DateIssued>
+      <TimeIssued>18:00:00</TimeIssued>
+      <Origin>Ilica 1</Origin>
+      <Destination>Petrova 3</Destination>
+      <KilometersTraveled>1020</KilometersTraveled>
+      <AverageSpeed>50</AverageSpeed>
+      <SpentFuel>38</SpentFuel>
+    </TravelRoute>
+    <TravelRoute Id="13">
+      <DateIssued>5/4/1997</DateIssued>
+      <TimeIssued>07:12:00</TimeIssued>
+      <Origin>Vinogradska</Origin>
+      <Destination>Stefanovec</Destination>
+      <KilometersTraveled>37.3</KilometersTraveled>
+      <AverageSpeed>50.3</AverageSpeed>
+      <SpentFuel>12</SpentFuel>
+    </TravelRoute>
+  </TravelRoutes>
+  <FuelCosts>
+    <FuelCost Id="1">
+      <DateIssued>2/3/2020</DateIssued>
+      <TimeIssued>18:00:00</TimeIssued>
+      <Position>zagrebacka 1</Position>
+      <Amount>100</Amount>
+      <Price>20.0000</Price>
+    </FuelCost>
+    <FuelCost Id="3">
+      <DateIssued>2/2/2000</DateIssued>
+      <TimeIssued>09:09:09</TimeIssued>
+      <Position>PeroPeric</Position>
+      <Amount>321</Amount>
+      <Price>123.0000</Price>
+    </FuelCost>
+  </FuelCosts>
+  <TravelWarrants>
+    <TravelWarrant Id="7">
+      <WarrantStatus>Open</WarrantStatus>
+      <DateIssued>11/11/1234</DateIssued>
+      <TimeIssued>11:11:11</TimeIssued>
+      <DriverId>66</DriverId>
+      <VehicleId>53</VehicleId>
+      <TravelRouteId>1</TravelRouteId>
+      <FuelCostId>3</FuelCostId>
+    </TravelWarrant>
+  </TravelWarrants>
+</DatabaseBackup>

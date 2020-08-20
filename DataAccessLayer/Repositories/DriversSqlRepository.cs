@@ -153,5 +153,27 @@ namespace DataAccessLayer.Repositories
                 return null;
             }
         }
+
+        public override void Restore(Driver driver)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText =
+                        $"IF NOT EXISTS (SELECT * FROM Drivers WHERE Id = {driver.Id}) " +
+                        $"BEGIN " +
+                        $"SET IDENTITY_INSERT Drivers ON " +
+                        $"INSERT INTO Drivers(Id, FirstName, LastName, PhoneNumber, DriversLicenceNumber) VALUES({driver.Id}, '{driver.FirstName}', '{driver.LastName}', '{driver.PhoneNumber}', '{driver.DriversLicenceNumber}') " +
+                        $"SET IDENTITY_INSERT Drivers OFF " +
+                        $"END";
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
+

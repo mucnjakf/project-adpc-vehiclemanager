@@ -1,0 +1,15 @@
+﻿<Window x:Class="DesktopUI.SharedWindows.BackupAndRestoreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopUI.SharedWindows"
+        mc:Ignorable="d"
+        Title="Backup/Restore" Height="300" Width="350" WindowStartupLocation="CenterScreen" Background="#333" Foreground="White" FontWeight="Thin">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <Button x:Name="BtnBackup" Content="Backup Data" Width="200" Height="40" FontSize="24" Margin="0 30 0 15" Click="BtnBackup_Click"/>
+        <Button x:Name="BtnRestore" Content="Restore Data" Width="200" Height="40" FontSize="24" Margin="0 15" Click="BtnRestore_Click" />
+
+        <Button x:Name="BtnClose" Content="Close" Width="80" Height="25" FontSize="16" Margin=" 50" Background="Red" Foreground="White" Click="BtnClose_Click"/>
+    </StackPanel>
+</Window>

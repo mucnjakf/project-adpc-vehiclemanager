@@ -21,7 +21,19 @@ namespace DataAccessLayer.Models
         {
 
         }
-        
+
+        public TravelRoute(int id, DateTime dateIssued, TimeSpan timeIssued, string origin, string destination, float kilometersTraveled, float averageSpeed, float spentFuel)
+        {
+            Id = id;
+            DateIssued = dateIssued;
+            TimeIssued = timeIssued;
+            Origin = origin;
+            Destination = destination;
+            KilometersTraveled = kilometersTraveled;
+            AverageSpeed = averageSpeed;
+            SpentFuel = spentFuel;
+        }
+
         public TravelRoute(DateTime dateIssued, TimeSpan timeIssued, string origin, string destination, float kilometersTraveled, float averageSpeed, float spentFuel)
         {
             DateIssued = dateIssued;

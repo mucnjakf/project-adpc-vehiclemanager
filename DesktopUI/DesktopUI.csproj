@@ -92,6 +92,9 @@
     <Compile Include="FuelCostsWindows\ShowFuelCostWindow.xaml.cs">
       <DependentUpon>ShowFuelCostWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SharedWindows\BackupAndRestoreWindow.xaml.cs">
+      <DependentUpon>BackupAndRestoreWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SharedWindows\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FuelCostsWindows\ShowFuelCostWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SharedWindows\BackupAndRestoreWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

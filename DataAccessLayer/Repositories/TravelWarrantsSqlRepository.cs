@@ -229,5 +229,50 @@ namespace DataAccessLayer.Repositories
         {
             MessageBox.Show($"InfoMessage Handled Error Level - { args.Errors[0].Class }: { args.Message } ");
         }
+
+        public override void Restore(TravelWarrant travelWarrant)
+        {
+            SqlTransaction sqlTransaction = null;
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.InfoMessage += new SqlInfoMessageEventHandler(Con_InfoMessage);
+                con.FireInfoMessageEventOnUserErrors = true;
+
+                con.Open();
+
+                sqlTransaction = con.BeginTransaction();
+
+                try
+                {
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.Transaction = sqlTransaction;
+
+                        cmd.CommandText = "RestoreTravelWarrant";
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@Id", SqlDbType.NVarChar).Value = travelWarrant.Id;
+                        cmd.Parameters.Add("@WarrantStatus", SqlDbType.NVarChar).Value = travelWarrant.WarrantStatus;
+                        cmd.Parameters.Add("@DateIssued", SqlDbType.Date).Value = travelWarrant.DateIssued;
+                        cmd.Parameters.Add("@TimeIssued", SqlDbType.Time).Value = travelWarrant.TimeIssued;
+                        cmd.Parameters.Add("@DriverId", SqlDbType.Int).Value = travelWarrant.DriverId;
+                        cmd.Parameters.Add("@VehicleId", SqlDbType.Int).Value = travelWarrant.VehicleId;
+                        cmd.Parameters.Add("@FuelCostId", SqlDbType.Int).Value = travelWarrant.FuelCostId;
+                        cmd.Parameters.Add("@TravelRouteId", SqlDbType.Int).Value = travelWarrant.TravelRouteId;
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    sqlTransaction.Commit();                    
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+
+                    sqlTransaction.Rollback();
+                }
+            }
+        }
     }
 }
