@@ -98,5 +98,10 @@ namespace DataAccessLayer.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public override void DeleteAll()
+        {
+            db.ExecuteNonQuery("DeleteAllTravelRoutes");
+        }
     }
 }

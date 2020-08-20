@@ -173,5 +173,21 @@ namespace DataAccessLayer.Repositories
                 }
             }
         }
+
+        public override void DeleteAll()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "DeleteAllFuelCosts";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

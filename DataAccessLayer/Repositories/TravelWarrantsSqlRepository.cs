@@ -274,5 +274,42 @@ namespace DataAccessLayer.Repositories
                 }
             }
         }
+
+        public override void DeleteAll()
+        {
+            SqlTransaction sqlTransaction = null;
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.InfoMessage += new SqlInfoMessageEventHandler(Con_InfoMessage);
+                con.FireInfoMessageEventOnUserErrors = true;
+
+                con.Open();
+
+                sqlTransaction = con.BeginTransaction();
+
+                try
+                {
+                    using (SqlCommand cmd = con.CreateCommand())
+                    {
+                        cmd.Transaction = sqlTransaction;
+
+                        cmd.CommandText = "DeleteAllTravelWarrants";
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    sqlTransaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+
+                    sqlTransaction.Rollback();
+                }
+            }
+        }
+
     }
 }

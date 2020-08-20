@@ -53,7 +53,7 @@ namespace DesktopUI.SharedWindows
             Close();
         }
 
-        private void BtnBackupAndRestore_Click(object sender, RoutedEventArgs e)
+        private void BtnBackupRestoreClearDatabase_Click(object sender, RoutedEventArgs e)
         {
             BackupAndRestoreWindow backupAndRestoreWindow = new BackupAndRestoreWindow();
             backupAndRestoreWindow.ShowDialog();

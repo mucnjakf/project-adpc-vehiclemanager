@@ -13,6 +13,7 @@ namespace DataAccessLayer.Repositories
         public abstract bool Create(T t);
         public abstract bool Update(T t);
         public abstract bool Delete(int id);
-        public abstract void Restore(T t);       
+        public abstract void Restore(T t);
+        public abstract void DeleteAll();
     }
 }

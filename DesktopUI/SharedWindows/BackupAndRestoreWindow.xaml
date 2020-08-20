@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopUI.SharedWindows"
         mc:Ignorable="d"
-        Title="Backup/Restore" Height="300" Width="350" WindowStartupLocation="CenterScreen" Background="#333" Foreground="White" FontWeight="Thin">
+        Title="Backup/Restore/Clear" Height="300" Width="350" WindowStartupLocation="CenterScreen" Background="#333" Foreground="White" FontWeight="Thin">
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-        <Button x:Name="BtnBackup" Content="Backup Data" Width="200" Height="40" FontSize="24" Margin="0 30 0 15" Click="BtnBackup_Click"/>
-        <Button x:Name="BtnRestore" Content="Restore Data" Width="200" Height="40" FontSize="24" Margin="0 15" Click="BtnRestore_Click" />
+        <Button x:Name="BtnBackup" Content="Backup Data" Width="200" Height="40" FontSize="24" Margin="0 30 0 5" Click="BtnBackup_Click"/>
+        <Button x:Name="BtnRestore" Content="Restore Data" Width="200" Height="40" FontSize="24" Margin="0 5" Click="BtnRestore_Click" />
+        <Button x:Name="BtnClear" Content="Clear Data" Width="200" Height="40" FontSize="24" Margin="0 5" Click="BtnClear_Click" />
 
-        <Button x:Name="BtnClose" Content="Close" Width="80" Height="25" FontSize="16" Margin=" 50" Background="Red" Foreground="White" Click="BtnClose_Click"/>
+        <Button x:Name="BtnClose" Content="Close" Width="80" Height="25" FontSize="16" Margin="0 40 0 0" Background="Red" Foreground="White" Click="BtnClose_Click"/>
     </StackPanel>
 </Window>

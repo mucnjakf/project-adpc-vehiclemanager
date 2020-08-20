@@ -526,5 +526,28 @@ namespace DesktopUI.SharedWindows
 
             xmlReader.Close();
         }
+
+        private void BtnClear_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to clear database?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                ClearDatabase();
+
+                MessageBox.Show("Success");
+
+                Close();
+            }
+        }
+
+        private void ClearDatabase()
+        {
+            travelWarrantsSqlRepository.DeleteAll();
+            travelRoutesSqlRepository.DeleteAll();
+            fuelCostsSqlRepository.DeleteAll();
+            driversSqlRepository.DeleteAll();
+            vehiclesSqlRepository.DeleteAll();
+        }
     }
 }
