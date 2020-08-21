@@ -11,7 +11,7 @@ namespace DataAccessLayer.Repositories
 {
     public class DriversSqlRepository : SqlRepository<Driver>
     {
-        public readonly string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
+        public readonly string cs = ConfigurationManager.ConnectionStrings["VehicleManagerDbContext"].ConnectionString;
 
         public override List<Driver> ReadAll()
         {

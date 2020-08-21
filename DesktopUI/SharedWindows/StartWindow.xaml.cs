@@ -1,5 +1,6 @@
 ﻿using DesktopUI.DriversWindows;
 using DesktopUI.TravelWarrantsWindows;
+using DesktopUI.VehicleServicesWindows;
 using DesktopUI.VehiclesWindows;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,13 @@ namespace DesktopUI.SharedWindows
         {
             BackupAndRestoreWindow backupAndRestoreWindow = new BackupAndRestoreWindow();
             backupAndRestoreWindow.ShowDialog();
+        }
+
+        private void BtnVehicleService_Click(object sender, RoutedEventArgs e)
+        {
+            VehicleServicesMainMenu vehicleServicesMainMenu = new VehicleServicesMainMenu();
+            vehicleServicesMainMenu.Show();
+            Close();
         }
     }
 }

@@ -21,9 +21,10 @@ namespace DesktopUI.VehiclesWindows
     /// </summary>
     public partial class EditVehicleWindow : Window
     {
-        VehiclesSqlRepository vehiclesSqlRepository;
+        readonly VehiclesSqlRepository vehiclesSqlRepository;
 
-        private Vehicle vehicle;
+        private readonly Vehicle vehicle;
+
 
         public EditVehicleWindow(Vehicle vehicle)
         {

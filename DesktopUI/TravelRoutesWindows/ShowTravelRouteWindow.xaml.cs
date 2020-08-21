@@ -21,7 +21,7 @@ namespace DesktopUI.TravelRoutesWindows
     /// </summary>
     public partial class ShowTravelRouteWindow : Window
     {
-        private TravelRoute travelRoute;
+        private readonly TravelRoute travelRoute;
 
         public ShowTravelRouteWindow(TravelRoute travelRoute)
         {

@@ -12,7 +12,7 @@ namespace DataAccessLayer.Repositories
 {
     public class FuelCostsSqlRepository : SqlRepository<FuelCost>
     {
-        private static readonly string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
+        private static readonly string cs = ConfigurationManager.ConnectionStrings["VehicleManagerDbContext"].ConnectionString;
 
         public override bool Create(FuelCost fuelCost)
         {

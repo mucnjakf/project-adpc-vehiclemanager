@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="yes"?>
+<TravelRoutes>
+  <TravelRoute>
+    <Id>1</Id>
+    <DateIssued>2/3/2020</DateIssued>
+    <TimeIssued>18:00:00</TimeIssued>
+    <Origin>Ilica 1</Origin>
+    <Destination>Petrova 3</Destination>
+    <KilometersTraveled>1020</KilometersTraveled>
+    <AverageSpeed>50</AverageSpeed>
+    <SpentFuel>38</SpentFuel>
+  </TravelRoute>
+  <TravelRoute>
+    <Id>13</Id>
+    <DateIssued>5/4/1997</DateIssued>
+    <TimeIssued>07:12:00</TimeIssued>
+    <Origin>Vinogradska</Origin>
+    <Destination>Stefanovec</Destination>
+    <KilometersTraveled>37.3</KilometersTraveled>
+    <AverageSpeed>50.3</AverageSpeed>
+    <SpentFuel>12</SpentFuel>
+  </TravelRoute>
+  <TravelRoute>
+    <Id>14</Id>
+    <DateIssued>8/20/2020</DateIssued>
+    <TimeIssued>22:08:15</TimeIssued>
+    <Origin>rty</Origin>
+    <Destination>ytr</Destination>
+    <KilometersTraveled>435</KilometersTraveled>
+    <AverageSpeed>345</AverageSpeed>
+    <SpentFuel>345</SpentFuel>
+  </TravelRoute>
+</TravelRoutes>

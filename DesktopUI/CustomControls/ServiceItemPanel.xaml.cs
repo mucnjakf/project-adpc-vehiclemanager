@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Models;
 using DataAccessLayer.Repositories;
+using DesktopUI.ServiceItemsWindows;
 using DesktopUI.VehiclesWindows;
 using System;
 using System.Collections.Generic;
@@ -19,47 +20,46 @@ using System.Windows.Shapes;
 namespace DesktopUI.CustomControls
 {
     /// <summary>
-    /// Interaction logic for VehiclePanel.xaml
+    /// Interaction logic for ServiceItemPanel.xaml
     /// </summary>
-    public partial class VehiclePanel : UserControl
+    public partial class ServiceItemPanel : UserControl
     {
-        readonly VehiclesSqlRepository vehiclesSqlRepository;
+        readonly ServiceItemsSqlRepository serviceItemsSqlRepository;
 
-        private readonly Vehicle vehicle;
+        readonly ServiceItem serviceItem;
 
-        public VehiclePanel(Vehicle vehicle)
+        public ServiceItemPanel(ServiceItem serviceItem)
         {
             InitializeComponent();
 
-            vehiclesSqlRepository = new VehiclesSqlRepository();
+            serviceItemsSqlRepository = new ServiceItemsSqlRepository();
 
-            this.vehicle = vehicle;
+            this.serviceItem = serviceItem;
 
-            SetVehicleValues();
+            SetServiceItemValues();
         }
 
-        private void SetVehicleValues()
+        private void SetServiceItemValues()
         {
-            LblMake.Text = vehicle.Make;
-            LblModel.Text = vehicle.Model;
-            LblAvailable.Text = vehicle.Available == true ? "Available" : "Not available";
+            LblName.Text = serviceItem.Name;
+            LblPrice.Text = serviceItem.Price.ToString();
         }
 
         private void BtnShow_Click(object sender, RoutedEventArgs e)
         {
-            ShowVehicleWindow showVehicleWindow = new ShowVehicleWindow(vehicle);
-            showVehicleWindow.Show();
+            ShowServiceItemWindow showServiceItemWindow = new ShowServiceItemWindow(serviceItem);
+            showServiceItemWindow.Show();
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            EditVehicleWindow editVehicleWindow = new EditVehicleWindow(vehicle);
-            editVehicleWindow.Show();
+            EditServiceItemWindow editServiceItemWindow = new EditServiceItemWindow(serviceItem);
+            editServiceItemWindow.Show();
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            bool success = vehiclesSqlRepository.Delete(vehicle.Id);
+            bool success = serviceItemsSqlRepository.Delete(serviceItem.Id);
 
             if (success)
             {

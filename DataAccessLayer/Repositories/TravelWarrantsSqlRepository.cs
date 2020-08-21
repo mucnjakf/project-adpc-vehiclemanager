@@ -13,7 +13,7 @@ namespace DataAccessLayer.Repositories
 {
     public class TravelWarrantsSqlRepository : SqlRepository<TravelWarrant>
     {
-        private static readonly string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
+        private static readonly string cs = ConfigurationManager.ConnectionStrings["VehicleManagerDbContext"].ConnectionString;
 
         public override bool Create(TravelWarrant travelWarrant)
         {

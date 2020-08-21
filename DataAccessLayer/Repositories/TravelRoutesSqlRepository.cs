@@ -13,7 +13,7 @@ namespace DataAccessLayer.Repositories
 {
     public class TravelRoutesSqlRepository : SqlRepository<TravelRoute>
     {
-        private static readonly string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
+        private static readonly string cs = ConfigurationManager.ConnectionStrings["VehicleManagerDbContext"].ConnectionString;
         private static readonly SqlDatabase db = new SqlDatabase(cs);
 
         public override bool Create(TravelRoute travelRoute)

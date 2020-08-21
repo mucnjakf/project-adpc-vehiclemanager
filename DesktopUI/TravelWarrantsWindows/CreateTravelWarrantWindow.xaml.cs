@@ -6,6 +6,8 @@ using DesktopUI.TravelRoutesWindows;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -244,6 +246,49 @@ namespace DesktopUI.TravelWarrantsWindows
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void BtnExportTravelRoutesToXml_Click(object sender, RoutedEventArgs e)
+        {
+            ExportTravelRoutesToXml();
+        }
+
+        private void ExportTravelRoutesToXml()
+        {
+            List<TravelRoute> travelRoutes = travelRoutesSqlRepository.ReadAll();
+
+            DataSet ds = new DataSet("TravelRoutes");
+            DataTable dt = new DataTable();
+
+            ds.Tables.Add(dt);
+
+            ds.Tables[0].TableName = "TravelRoute";
+
+            dt.Columns.Add("Id", typeof(int));
+            dt.Columns.Add("DateIssued", typeof(string));
+            dt.Columns.Add("TimeIssued", typeof(string));
+            dt.Columns.Add("Origin", typeof(string));
+            dt.Columns.Add("Destination", typeof(string));
+            dt.Columns.Add("KilometersTraveled", typeof(float));
+            dt.Columns.Add("AverageSpeed", typeof(float));
+            dt.Columns.Add("SpentFuel", typeof(float));
+
+            foreach (TravelRoute travelRoute in travelRoutes)
+            {
+                DataRow row = dt.Rows.Add();
+                row.SetField("Id", travelRoute.Id);
+                row.SetField("DateIssued", travelRoute.DateIssued.ToShortDateString());
+                row.SetField("TimeIssued", travelRoute.TimeIssued);
+                row.SetField("Origin", travelRoute.Origin);
+                row.SetField("Destination", travelRoute.Destination);
+                row.SetField("KilometersTraveled", travelRoute.KilometersTraveled);
+                row.SetField("AverageSpeed", travelRoute.AverageSpeed);
+                row.SetField("SpentFuel", travelRoute.SpentFuel);
+            }
+
+            ds.WriteXml("../../../DataForExport/TravelRoutes.xml");
+
+            MessageBox.Show("Success");
         }
     }
 }

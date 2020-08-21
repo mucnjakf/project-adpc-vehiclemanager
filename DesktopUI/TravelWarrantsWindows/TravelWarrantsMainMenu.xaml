@@ -11,6 +11,41 @@
 
         <TextBlock Text="Travel Warrants" FontSize="64" Margin="0 0 0 60" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Filter warrant status by:" FontSize="30" Margin="285 20 5 5"/>
+
+            <RadioButton Content="All" Margin="5 23 10 0" Foreground="White" x:Name="RbAll" Checked="RbAll_Checked">
+                <RadioButton.LayoutTransform>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                </RadioButton.LayoutTransform>
+            </RadioButton>
+
+            <RadioButton Content="Open" Margin="10 23 10 0" Foreground="White" x:Name="RbOpen" Checked="RbOpen_Checked">
+                <RadioButton.LayoutTransform>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                </RadioButton.LayoutTransform>
+            </RadioButton>
+
+            <RadioButton Content="Closed" Margin="10 23 10 0" Foreground="White" x:Name="RbClosed" Checked="RbClosed_Checked">
+                <RadioButton.LayoutTransform>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                </RadioButton.LayoutTransform>
+            </RadioButton>
+
+
+
+            <!--<CheckBox Content="Open" Margin="5 23 10 0" Foreground="White" x:Name="ChBxOpen" Checked="ChBxOpen_Checked" Unchecked="ChBxOpen_Unchecked">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Content="Closed" Margin="10 23 0  0" Foreground="White" x:Name="ChBxClosed" Checked="ChBxClosed_Checked" Unchecked="ChBxClosed_Unchecked">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>-->
+        </StackPanel>
+
         <Border BorderBrush="White" BorderThickness="1" Width="1350" Height="500">
             <ScrollViewer>
                 <StackPanel x:Name="SpTravelWarrants" Orientation="Vertical" />

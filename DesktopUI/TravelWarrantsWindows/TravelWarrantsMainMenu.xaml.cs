@@ -62,5 +62,45 @@ namespace DesktopUI.TravelWarrantsWindows
             CreateTravelWarrantWindow createTravelWarrantWindow = new CreateTravelWarrantWindow();
             createTravelWarrantWindow.Show();
         }
+
+        private void RbAll_Checked(object sender, RoutedEventArgs e)
+        {
+            SpTravelWarrants.Children.Clear(); 
+            LoadTravelWarrantsToStackPanel();
+        }
+
+        private void RbOpen_Checked(object sender, RoutedEventArgs e)
+        {
+            SpTravelWarrants.Children.Clear();
+
+            List<TravelWarrant> travelWarrants = travelWarrantsSqlRepository.ReadAll();
+
+            foreach (TravelWarrant travelWarrant in travelWarrants)
+            {
+                if (travelWarrant.WarrantStatus == "Open")
+                {
+                    TravelWarrantPanel travelWarrantPanel = new TravelWarrantPanel(travelWarrant);
+
+                    SpTravelWarrants.Children.Add(travelWarrantPanel);
+                }
+            }
+        }
+
+        private void RbClosed_Checked(object sender, RoutedEventArgs e)
+        {
+            SpTravelWarrants.Children.Clear();
+
+            List<TravelWarrant> travelWarrants = travelWarrantsSqlRepository.ReadAll();
+
+            foreach (TravelWarrant travelWarrant in travelWarrants)
+            {
+                if (travelWarrant.WarrantStatus == "Closed")
+                {
+                    TravelWarrantPanel travelWarrantPanel = new TravelWarrantPanel(travelWarrant);
+
+                    SpTravelWarrants.Children.Add(travelWarrantPanel);
+                }
+            }
+        }
     }
 }
