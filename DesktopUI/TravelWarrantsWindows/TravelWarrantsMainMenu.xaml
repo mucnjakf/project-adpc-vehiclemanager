@@ -31,19 +31,6 @@
                     <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
                 </RadioButton.LayoutTransform>
             </RadioButton>
-
-
-
-            <!--<CheckBox Content="Open" Margin="5 23 10 0" Foreground="White" x:Name="ChBxOpen" Checked="ChBxOpen_Checked" Unchecked="ChBxOpen_Unchecked">
-                <CheckBox.LayoutTransform>
-                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
-                </CheckBox.LayoutTransform>
-            </CheckBox>
-            <CheckBox Content="Closed" Margin="10 23 0  0" Foreground="White" x:Name="ChBxClosed" Checked="ChBxClosed_Checked" Unchecked="ChBxClosed_Unchecked">
-                <CheckBox.LayoutTransform>
-                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
-                </CheckBox.LayoutTransform>
-            </CheckBox>-->
         </StackPanel>
 
         <Border BorderBrush="White" BorderThickness="1" Width="1350" Height="500">

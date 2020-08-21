@@ -30,7 +30,7 @@ namespace DesktopUI.FuelCostsWindows
 
             fuelCostsSqlRepository = new FuelCostsSqlRepository();
 
-            TbDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            TbDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
             TbTime.Text = DateTime.Now.ToString("HH:MM:ss");
         }
 
@@ -45,7 +45,7 @@ namespace DesktopUI.FuelCostsWindows
             {
                 if (DateTime.TryParse(TbDate.Text, out DateTime date) && TimeSpan.TryParse(TbTime.Text, out TimeSpan time) && float.TryParse(TbAmount.Text, out float amount) && decimal.TryParse(TbPrice.Text, out decimal price))
                 {
-                    if (Regex.IsMatch(TbDate.Text, @"\d\d\d\d-\d\d-\d\d") && Regex.IsMatch(TbTime.Text, @"\d\d:\d\d:\d\d"))
+                    if ((Regex.IsMatch(TbDate.Text, @"\d\d/\d\d/\d\d\d\d") || Regex.IsMatch(TbDate.Text, @"\d/\d\d/\d\d\d\d")) && Regex.IsMatch(TbTime.Text, @"\d\d:\d\d:\d\d"))
                     {
                         FuelCost createdFuelCost = new FuelCost()
                         {
@@ -70,12 +70,12 @@ namespace DesktopUI.FuelCostsWindows
                     }
                     else
                     {
-                        MessageBox.Show("Date format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
+                        MessageBox.Show("Date format must be: \"MM/dd/yyyy\"\nTime format must be: \"HH:MM:ss\"");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Amount and price must be numbers\nDate format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
+                    MessageBox.Show("Amount and price must be numbers\nDate format must be: \"MM/dd/yyyy\"\nTime format must be: \"HH:MM:ss\"");
                 }
             }
             else

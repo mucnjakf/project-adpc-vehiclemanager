@@ -41,6 +41,7 @@ namespace DesktopUI.CustomControls
 
         private void SetServiceItemValues()
         {
+            LblId.Text = serviceItem.Id.ToString();
             LblName.Text = serviceItem.Name;
             LblPrice.Text = serviceItem.Price.ToString();
         }

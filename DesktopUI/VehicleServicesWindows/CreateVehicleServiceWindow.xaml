@@ -24,19 +24,16 @@
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Column="1" Grid.Row="0" Text="Date:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 80 10 10" Foreground="White" />
                         <TextBlock Grid.Column="1" Grid.Row="1" Text="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
-                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Price:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
-                        <TextBlock Grid.Column="1" Grid.Row="3" Text="Vehicle:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Vehicle:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
 
                         <TextBox Grid.Column="2" Grid.Row="0" x:Name="TbDate" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 80 10 10" Height="50" Width="350" FontSize="24" />
                         <TextBox Grid.Column="2" Grid.Row="1" x:Name="TbTime" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 30 10 10" Height="50" Width="350" FontSize="24" />
-                        <TextBox Grid.Column="2" Grid.Row="2" x:Name="TbPrice" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 30 10 10" Height="50" Width="350" FontSize="24" />
-                        <ComboBox Grid.Column="2" Grid.Row="3" x:Name="CbVehicles" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 30 10 10" Height="50" Width="350" FontSize="24" />
+                        <ComboBox Grid.Column="2" Grid.Row="2" x:Name="CbVehicles" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 30 10 10" Height="50" Width="350" FontSize="24" />
                     </Grid>
                 </TabItem>
                 <TabItem Header="Service Items" Width="408">

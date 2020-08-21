@@ -30,7 +30,7 @@ namespace DesktopUI.TravelRoutesWindows
 
             travelRoutesSqlRepository = new TravelRoutesSqlRepository();
 
-            TbDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            TbDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
             TbTime.Text = DateTime.Now.ToString("HH:MM:ss");
         }
 
@@ -45,7 +45,7 @@ namespace DesktopUI.TravelRoutesWindows
             {
                 if (DateTime.TryParse(TbDate.Text, out DateTime date) && TimeSpan.TryParse(TbTime.Text, out TimeSpan time) && float.TryParse(TbKilometersTraveled.Text, out float kilometersTraveled) && float.TryParse(TbAverageSpeed.Text, out float averageSpeed) && float.TryParse(TbSpentFuel.Text, out float spentFuel))
                 {
-                    if (Regex.IsMatch(TbDate.Text, @"\d\d\d\d-\d\d-\d\d") && Regex.IsMatch(TbTime.Text, @"\d\d:\d\d:\d\d"))
+                    if ((Regex.IsMatch(TbDate.Text, @"\d\d/\d\d/\d\d\d\d") || Regex.IsMatch(TbDate.Text, @"\d/\d\d/\d\d\d\d")) && Regex.IsMatch(TbTime.Text, @"\d\d:\d\d:\d\d"))
                     {
                         TravelRoute createdTravelRoute = new TravelRoute()
                         {
@@ -72,12 +72,12 @@ namespace DesktopUI.TravelRoutesWindows
                     }
                     else
                     {
-                        MessageBox.Show("Date format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
+                        MessageBox.Show("Date format must be: \"MM/dd/yyyy\"\nTime format must be: \"HH:MM:ss\"");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Kilometers traveled, average speed and spent fuel must be numbers\nDate format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
+                    MessageBox.Show("Kilometers traveled, average speed and spent fuel must be numbers\nDate format must be: \"MM/dd/yyyy\"\nTime format must be: \"HH:MM:ss\"");
                 }
             }
             else

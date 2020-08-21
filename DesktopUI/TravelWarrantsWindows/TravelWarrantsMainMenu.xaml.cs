@@ -65,7 +65,7 @@ namespace DesktopUI.TravelWarrantsWindows
 
         private void RbAll_Checked(object sender, RoutedEventArgs e)
         {
-            SpTravelWarrants.Children.Clear(); 
+            SpTravelWarrants.Children.Clear();
             LoadTravelWarrantsToStackPanel();
         }
 

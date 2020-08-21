@@ -126,7 +126,7 @@ namespace DesktopUI.TravelWarrantsWindows
             {
                 if (DateTime.TryParse(TbDate.Text, out DateTime date) && (TimeSpan.TryParse(TbTime.Text, out TimeSpan time)))
                 {
-                    if (Regex.IsMatch(TbDate.Text, @"\d\d\d\d-\d\d-\d\d") && Regex.IsMatch(TbTime.Text, @"\d\d:\d\d:\d\d"))
+                    if ((Regex.IsMatch(TbDate.Text, @"\d\d/\d\d/\d\d\d\d") || Regex.IsMatch(TbDate.Text, @"\d/\d\d/\d\d\d\d")) && Regex.IsMatch(TbTime.Text, @"\d\d:\d\d:\d\d"))
                     {
                         int driverId = int.Parse(CbDrivers.Text.Substring(0, CbDrivers.Text.IndexOf(' ')));
                         int vehicleId = int.Parse(CbVehicles.Text.Substring(0, CbVehicles.Text.IndexOf(' ')));
@@ -175,12 +175,12 @@ namespace DesktopUI.TravelWarrantsWindows
                     }
                     else
                     {
-                        MessageBox.Show("Date format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
+                        MessageBox.Show("Date format must be: \"MM/dd/yyyy\"\nTime format must be: \"HH:MM:ss\"");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Date format must be: \"2000-01-01\"\nTime format must be: \"11:00:00\"");
+                    MessageBox.Show("Date format must be: \"MM/dd/yyyy\"\nTime format must be: \"HH:MM:ss\"");
                 }
             }
             else
