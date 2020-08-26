@@ -33,9 +33,10 @@
             </StackPanel>
             
             <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="BtnShow" Content="Show" FontSize="25" Width="130" Height="50" Margin="2.5 0" Click="BtnShow_Click" />
-                <Button x:Name="BtnEdit" Content="Edit" FontSize="25" Width="130" Height="50" Margin="2.5 0" Click="BtnEdit_Click" />
-                <Button x:Name="BtnDelete" Content="Delete" FontSize="25" Width="130" Height="50" Margin="2.5 0" Click="BtnDelete_Click" />
+                <Button x:Name="BtnShow" Content="Show" FontSize="22" Width="100" Height="40" Margin="2.5 0" Click="BtnShow_Click" />
+                <Button x:Name="BtnEdit" Content="Edit" FontSize="22" Width="100" Height="40" Margin="2.5 0" Click="BtnEdit_Click" />
+                <Button x:Name="BtnDelete" Content="Delete" FontSize="22" Width="100" Height="40" Margin="2.5 0" Click="BtnDelete_Click" />
+                <Button x:Name="BtnReport" Content="Report" FontSize="22" Width="100" Height="40" Margin="2.5 0" Click="BtnReport_Click" />
             </StackPanel>
         </Grid>
     </Border>

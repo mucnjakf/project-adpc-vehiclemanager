@@ -62,7 +62,6 @@ namespace DesktopUI.VehicleServicesWindows
                             if (serviceItemPanel.ChBxServiceItem.IsChecked == true)
                             {
                                 totalPrice += decimal.Parse(serviceItemPanel.LblPrice.Text);
-
                             }
                         }
 
@@ -85,12 +84,10 @@ namespace DesktopUI.VehicleServicesWindows
                         {
                             DateIssued = date,
                             TimeIssued = time,
-                            TotalPrice = totalPrice,
-                            Vehicle = vehicle,
-                            ServiceItems = serviceItems
+                            TotalPrice = totalPrice
                         };
 
-                        bool success = servicesSqlRepository.Create(service);
+                        bool success = servicesSqlRepository.Create(service, vehicle, serviceItems);
 
                         if (success)
                         {

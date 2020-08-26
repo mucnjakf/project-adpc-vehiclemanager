@@ -145,6 +145,9 @@
     <Compile Include="VehicleServicesWindows\CreateVehicleServiceWindow.xaml.cs">
       <DependentUpon>CreateVehicleServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VehicleServicesWindows\ShowVehicleServiceWindow.xaml.cs">
+      <DependentUpon>ShowVehicleServiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VehicleServicesWindows\VehicleServicesMainMenu.xaml.cs">
       <DependentUpon>VehicleServicesMainMenu.xaml</DependentUpon>
     </Compile>
@@ -289,6 +292,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VehicleServicesWindows\ShowVehicleServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VehicleServicesWindows\VehicleServicesMainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -315,6 +322,9 @@
       <Project>{3A89C4CA-DBE4-47E2-B711-1B8171F56AD8}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Template.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

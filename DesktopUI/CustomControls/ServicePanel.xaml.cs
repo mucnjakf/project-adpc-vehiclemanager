@@ -1,4 +1,6 @@
 ﻿using DataAccessLayer.Models;
+using DataAccessLayer.Repositories;
+using DesktopUI.VehicleServicesWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +24,13 @@ namespace DesktopUI.CustomControls
     public partial class ServicePanel : UserControl
     {
         readonly Service service;
+        readonly ServicesSqlRepository servicesSqlRepository;
 
         public ServicePanel(Service service)
         {
             InitializeComponent();
+
+            servicesSqlRepository = new ServicesSqlRepository();
 
             this.service = service;
 
@@ -42,7 +47,8 @@ namespace DesktopUI.CustomControls
 
         private void BtnShow_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowVehicleServiceWindow showVehicleServiceWindow = new ShowVehicleServiceWindow(service);
+            showVehicleServiceWindow.Show();
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
@@ -52,7 +58,16 @@ namespace DesktopUI.CustomControls
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            bool success = servicesSqlRepository.Delete(service.Id);
 
+            if (success)
+            {
+                MessageBox.Show("Success");
+            }
+            else
+            {
+                MessageBox.Show("Fail");
+            }
         }
     }
 }

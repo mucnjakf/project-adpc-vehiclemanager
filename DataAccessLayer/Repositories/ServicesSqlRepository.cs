@@ -2,10 +2,8 @@
 using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace DataAccessLayer.Repositories
 {
@@ -13,12 +11,25 @@ namespace DataAccessLayer.Repositories
     {
         readonly VehicleManagerDbContext db = new VehicleManagerDbContext();
 
-        public override bool Create(Service service)
+        public bool Create(Service service, Vehicle vehicle, List<ServiceItem> serviceItems)
         {
+            service.Vehicle = vehicle;
+            service.ServiceItems = serviceItems;
+
             db.Services.Add(service);
+
+            db.Entry(vehicle).State = EntityState.Unchanged;
+            serviceItems.ForEach(s => db.Entry(s).State = EntityState.Unchanged);
+                      
             int success = db.SaveChanges();
 
             return success > 0;
+        }
+
+        [Obsolete("Method is deprecated, please use Create(Service service, Vehicle vehicle) instead.")]
+        public override bool Create(Service t)
+        {
+            throw new NotImplementedException();
         }
 
         public override bool Delete(int id)

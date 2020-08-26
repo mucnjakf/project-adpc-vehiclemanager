@@ -1,0 +1,89 @@
+﻿<Window x:Class="DesktopUI.VehicleServicesWindows.ShowVehicleServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopUI.VehicleServicesWindows"
+        mc:Ignorable="d"
+        Title="Show Vehicle Service" Height="1010" Width="1000" Background="#333" Foreground="White" FontWeight="Thin" WindowStartupLocation="CenterScreen" FontSize="25">
+    <StackPanel>
+        <TextBlock Text="Vehicle Service" FontSize="64" HorizontalAlignment="Center" Margin="0 30 0 40"/>
+
+        <Border BorderBrush="White" BorderThickness="1" Width="820" Height="625">
+            <TabControl HorizontalAlignment="Center" VerticalAlignment="Center" Height="625" Width="820" FontSize="24" Background="#555555">
+                <TabItem Header="Service" Width="272">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Id:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 80 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Date:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Time:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+                        
+                        <TextBlock Grid.Column="2" Grid.Row="0" x:Name="LblIdService" Text="Id" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 80 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="2" Grid.Row="1" x:Name="LblDate" Text="Date" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+                        <TextBlock Grid.Column="2" Grid.Row="2" x:Name="LblTime" Text="Time" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 30 10 10" Foreground="White" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Vehicle" Width="272">
+                    <StackPanel Margin="0 1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Column="1" Grid.Row="2" Text="Id:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 40 10 30" Foreground="White" />
+                            <TextBlock Grid.Column="1" Grid.Row="3" Text="Make:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="4" Text="Model:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="5" Text="Year of manufacture:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="6" Text="Initial mileage:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="7" Text="Availability:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White"/>
+
+                            <TextBlock Grid.Column="2" Grid.Row="2" x:Name="LblIdVehicle" Text="Id" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 40 10 30"  Foreground="White" />
+                            <TextBlock Grid.Column="2" Grid.Row="3" x:Name="LblMake" Text="Make" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White" />
+                            <TextBlock Grid.Column="2" Grid.Row="4" x:Name="LblModel" Text="Model" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White" />
+                            <TextBlock Grid.Column="2" Grid.Row="5" x:Name="LblYearOfManufacture" Text="YearOfManufacture" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White" />
+                            <TextBlock Grid.Column="2" Grid.Row="6" x:Name="LblInitialMileage" Text="InitialMileage" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White" />
+                            <TextBlock Grid.Column="2" Grid.Row="7" x:Name="LblAvailability" Text="Availability" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 10 10 30" Foreground="White" />
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Service Items" Width="272">
+                    <StackPanel Margin="0 1">
+                        <Border BorderBrush="White" BorderThickness="1" Width="810" Height="575">
+                            <ScrollViewer>
+                                <StackPanel x:Name="SpServiceItems" Orientation="Vertical" />
+                            </ScrollViewer>
+                        </Border>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Border>
+        <Button x:Name="BtnClose" Content="Close" Width="250" Height="70" FontSize="30" Margin="0 60" Background="Red" Foreground="White" HorizontalAlignment="Center" Click="BtnClose_Click"/>
+    </StackPanel>
+</Window>

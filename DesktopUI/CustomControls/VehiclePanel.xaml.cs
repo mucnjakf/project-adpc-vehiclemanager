@@ -3,7 +3,9 @@ using DataAccessLayer.Repositories;
 using DesktopUI.VehiclesWindows;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +26,9 @@ namespace DesktopUI.CustomControls
     public partial class VehiclePanel : UserControl
     {
         readonly VehiclesSqlRepository vehiclesSqlRepository;
+        readonly TravelRoutesSqlRepository travelRoutesSqlRepository;
+        readonly ServicesSqlRepository servicesSqlRepository;
+        readonly TravelWarrantsSqlRepository travelWarrantsSqlRepository;
 
         private readonly Vehicle vehicle;
 
@@ -32,6 +37,10 @@ namespace DesktopUI.CustomControls
             InitializeComponent();
 
             vehiclesSqlRepository = new VehiclesSqlRepository();
+            travelWarrantsSqlRepository = new TravelWarrantsSqlRepository();
+            travelRoutesSqlRepository = new TravelRoutesSqlRepository();
+            servicesSqlRepository = new ServicesSqlRepository();
+            serviceItemsSqlRepository = new ServiceItemsSqlRepository();
 
             this.vehicle = vehicle;
 
@@ -69,6 +78,82 @@ namespace DesktopUI.CustomControls
             {
                 MessageBox.Show("Fail");
             }
+        }
+
+        private void BtnReport_Click(object sender, RoutedEventArgs e)
+        {
+            GenerateVehicleReport();
+        }
+
+        private void GenerateVehicleReport()
+        {
+            Vehicle v = vehiclesSqlRepository.ReadById(vehicle.Id);
+            string make = v.Make;
+            string model = v.Model;
+
+            float currentlyTraveledKilometers = v.InitialMileage;
+
+            float averageSpeed = 0;
+            int counter = 0;
+
+            List<TravelWarrant> travelWarrants = travelWarrantsSqlRepository.ReadAll();
+            List<TravelRoute> travelRoutes = travelRoutesSqlRepository.ReadAll();
+
+            foreach (TravelWarrant travelWarrant in travelWarrants)
+            {
+                if (travelWarrant.VehicleId == v.Id)
+                {
+                    TravelRoute travelRoute = travelRoutesSqlRepository.ReadById(travelWarrant.TravelRouteId);
+
+                    currentlyTraveledKilometers += travelRoute.KilometersTraveled;
+                    averageSpeed += travelRoute.AverageSpeed;
+                    counter++;
+                }
+            }
+
+            averageSpeed /= counter;
+
+            var resourceName = Assembly.GetExecutingAssembly().GetManifestResourceNames().Where(q => q.Contains("Template.html")).FirstOrDefault();
+
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    List<Service> services = servicesSqlRepository.ReadAll();
+
+                    foreach (Service service in services)
+                    {
+                        if (service.Vehicle.Id == v.Id)
+                        {
+                            sb.Append("<table>\n");
+                            sb.Append("<tr>\n");
+
+                            foreach (ServiceItem serviceItem in service.ServiceItems)
+                            {
+                                sb.Append("<td></br>");
+                                sb.Append("Service item\n");
+                                sb.Append("</br>");
+                                sb.Append(serviceItem.Name + "\n");
+                                sb.Append("</br>");
+                                sb.Append(serviceItem.Price + "\n");
+                                sb.Append("</br>");
+                                sb.Append("</td>\n");
+                            }
+
+                            sb.Append("</tr>\n");
+                            sb.Append("</table>\n");
+                        }
+                    }
+
+                    string html = reader.ReadToEnd().Replace("$$MAKE$$", make).Replace("$$MODEL$$", model).Replace("$$CTK$$", currentlyTraveledKilometers.ToString()).Replace("$$AVERAGESPEED$$", averageSpeed.ToString()).Replace("$$SERVICEITEMS$$", sb.ToString());
+
+                    File.WriteAllText(@"../../../DataForExport/HtmlVehicleReport.html", html);
+                }
+            }
+            MessageBox.Show("Success");
+            
+            System.Diagnostics.Process.Start(@"C:\Development\project-adpc-vehiclemanager\DataForExport/HtmlVehicleReport.html");
         }
     }
 }
