@@ -18,6 +18,8 @@ namespace DesktopUI.SharedWindows
         readonly TravelRoutesSqlRepository travelRoutesSqlRepository;
         readonly FuelCostsSqlRepository fuelCostsSqlRepository;
         readonly TravelWarrantsSqlRepository travelWarrantsSqlRepository;
+        readonly ServicesSqlRepository servicesSqlRepository;
+        readonly ServiceItemsSqlRepository serviceItemsSqlRepository;
 
         public BackupAndRestoreWindow()
         {
@@ -28,6 +30,8 @@ namespace DesktopUI.SharedWindows
             travelRoutesSqlRepository = new TravelRoutesSqlRepository();
             fuelCostsSqlRepository = new FuelCostsSqlRepository();
             travelWarrantsSqlRepository = new TravelWarrantsSqlRepository();
+            servicesSqlRepository = new ServicesSqlRepository();
+            serviceItemsSqlRepository = new ServiceItemsSqlRepository();
         }
 
         private void BtnBackup_Click(object sender, RoutedEventArgs e)
@@ -63,7 +67,9 @@ namespace DesktopUI.SharedWindows
             xmlWriter = WriteTravelRoutes(xmlWriter);
             xmlWriter = WriteFuelCosts(xmlWriter);
             xmlWriter = WriteTravelWarrants(xmlWriter);
-            
+            // xmlWriter = WriteServices(xmlWriter);
+            // xmlWriter = WriteServiceItems(xmlWriter);
+
             xmlWriter.WriteEndElement();
 
             xmlWriter.Close();
@@ -270,6 +276,109 @@ namespace DesktopUI.SharedWindows
 
                 xmlWriter.WriteStartElement("FuelCostId");
                 xmlWriter.WriteString(travelWarrant.FuelCostId.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteEndElement();
+            }
+
+            xmlWriter.WriteEndElement();
+
+            return xmlWriter;
+        }
+
+        private XmlWriter WriteServices(XmlWriter xmlWriter)
+        {
+            List<Service> services = servicesSqlRepository.ReadAll();
+
+            xmlWriter.WriteStartElement("Services"); 
+
+            foreach (Service service in services)
+            {
+                xmlWriter.WriteStartElement("Service");
+                xmlWriter.WriteAttributeString("Id", service.Id.ToString());
+
+                xmlWriter.WriteStartElement("DateIssued");
+                xmlWriter.WriteString(service.DateIssued.ToShortDateString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("TimeIssued");
+                xmlWriter.WriteString(service.TimeIssued.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("TotalPrice");
+                xmlWriter.WriteString(service.TotalPrice.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("ServiceItems");
+
+                foreach (ServiceItem serviceItem in service.ServiceItems)
+                {
+                    xmlWriter.WriteStartElement("ServiceItem");
+                    xmlWriter.WriteAttributeString("Id", serviceItem.Id.ToString());
+
+                    xmlWriter.WriteStartElement("Name");
+                    xmlWriter.WriteString(serviceItem.Name);
+                    xmlWriter.WriteEndElement();
+
+                    xmlWriter.WriteStartElement("Price");
+                    xmlWriter.WriteString(serviceItem.Price.ToString());
+                    xmlWriter.WriteEndElement();
+
+                    xmlWriter.WriteEndElement();
+                }
+
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("Vehicle");
+                xmlWriter.WriteAttributeString("Id", service.Vehicle.Id.ToString());
+
+                xmlWriter.WriteStartElement("Make");
+                xmlWriter.WriteString(service.Vehicle.Make);
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("Model");
+                xmlWriter.WriteString(service.Vehicle.Model);
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("YearOfManufacture");
+                xmlWriter.WriteString(service.Vehicle.YearOfManufacture.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("InitialMileage");
+                xmlWriter.WriteString(service.Vehicle.InitialMileage.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("Available");
+                xmlWriter.WriteString(service.Vehicle.Available.ToString());
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteEndElement();
+            }
+
+            xmlWriter.WriteEndElement();
+
+            return xmlWriter;
+        }
+
+        private XmlWriter WriteServiceItems(XmlWriter xmlWriter)
+        {
+            List<ServiceItem> serviceItems = serviceItemsSqlRepository.ReadAll();
+
+            xmlWriter.WriteStartElement("ServiceItems");
+
+            foreach (ServiceItem serviceItem in serviceItems)
+            {
+                xmlWriter.WriteStartElement("ServiceItem");
+                xmlWriter.WriteAttributeString("Id", serviceItem.Id.ToString());
+
+                xmlWriter.WriteStartElement("Name");
+                xmlWriter.WriteString(serviceItem.Name);
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("Price");
+                xmlWriter.WriteString(serviceItem.Price.ToString());
                 xmlWriter.WriteEndElement();
 
                 xmlWriter.WriteEndElement();
@@ -547,7 +656,7 @@ namespace DesktopUI.SharedWindows
             travelRoutesSqlRepository.DeleteAll();
             fuelCostsSqlRepository.DeleteAll();
             driversSqlRepository.DeleteAll();
-            vehiclesSqlRepository.DeleteAll();
+            vehiclesSqlRepository.DeleteAll();         
         }
     }
 }

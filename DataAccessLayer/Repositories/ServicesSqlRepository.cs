@@ -3,6 +3,8 @@ using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace DataAccessLayer.Repositories
@@ -16,11 +18,11 @@ namespace DataAccessLayer.Repositories
             service.Vehicle = vehicle;
             service.ServiceItems = serviceItems;
 
+            db.Entry(vehicle).State = EntityState.Unchanged;
+            // serviceItems.ForEach(s => db.Entry(s).State = EntityState.Unchanged);
+
             db.Services.Add(service);
 
-            db.Entry(vehicle).State = EntityState.Unchanged;
-            serviceItems.ForEach(s => db.Entry(s).State = EntityState.Unchanged);
-                      
             int success = db.SaveChanges();
 
             return success > 0;
