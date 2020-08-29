@@ -135,7 +135,9 @@ namespace DesktopUI.VehicleServicesWindows
         {
             SpServiceItems.Children.Clear();
 
-            List<ServiceItem> serviceItems = serviceItemsSqlRepository.ReadAll();
+            ServiceItemsSqlRepository serviceItemsSqlRepository1 = new ServiceItemsSqlRepository();
+
+            List<ServiceItem> serviceItems = serviceItemsSqlRepository1.ReadAll();
 
             foreach (ServiceItem serviceItem in serviceItems)
             {
@@ -153,6 +155,6 @@ namespace DesktopUI.VehicleServicesWindows
         private void LoadVehiclesToComboBox()
         {
             CbVehicles.ItemsSource = vehiclesSqlRepository.ReadAll();
-        }
+        }       
     }
 }

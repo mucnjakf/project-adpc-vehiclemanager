@@ -218,5 +218,24 @@ namespace DataAccessLayer.Repositories
                 }
             }
         }
+
+        public void UpdateVehicleAvailability(int id, bool available)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "UpdateVehicleAvailability";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                    cmd.Parameters.Add("@Available", SqlDbType.Bit).Value = available;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -59,6 +59,9 @@ namespace DesktopUI.CustomControls
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            VehiclesSqlRepository vehiclesSqlRepository = new VehiclesSqlRepository();
+            vehiclesSqlRepository.UpdateVehicleAvailability(travelWarrant.VehicleId, true);
+
             bool success = travelWarrantsSqlRepository.Delete(travelWarrant.Id);
 
             if (success)

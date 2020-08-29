@@ -62,7 +62,7 @@ namespace DesktopUI.TravelWarrantsWindows
         }
         private void LoadVehiclesToComboBox()
         {
-            CbVehicles.ItemsSource = vehiclesSqlRepository.ReadAll();
+            CbVehicles.ItemsSource = vehiclesSqlRepository.ReadAll().Where(v => v.Available != false);
         }
 
         private void LoadDriversToComboBox()
@@ -122,7 +122,7 @@ namespace DesktopUI.TravelWarrantsWindows
 
         private void UpdateTravelWarrant()
         {
-            if(CbStatus.Text != string.Empty && TbDate.Text != string.Empty && TbTime.Text != string.Empty)
+            if(CbStatus.Text != string.Empty && TbDate.Text != string.Empty && TbTime.Text != string.Empty && CbDrivers.Text != string.Empty && CbVehicles.Text != string.Empty)
             {
                 if (DateTime.TryParse(TbDate.Text, out DateTime date) && (TimeSpan.TryParse(TbTime.Text, out TimeSpan time)))
                 {
@@ -160,6 +160,11 @@ namespace DesktopUI.TravelWarrantsWindows
                             FuelCostId = fuelCostId,
                             TravelRouteId = travelRouteId
                         };
+
+                        int oldVehicleId = travelWarrant.VehicleId;
+                        vehiclesSqlRepository.UpdateVehicleAvailability(oldVehicleId, true);
+
+                        vehiclesSqlRepository.UpdateVehicleAvailability(vehicleId, false);
 
                         bool success = travelWarrantsSqlRepository.Update(updatedTravelWarrant);
 

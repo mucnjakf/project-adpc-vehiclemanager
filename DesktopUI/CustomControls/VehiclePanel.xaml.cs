@@ -40,7 +40,6 @@ namespace DesktopUI.CustomControls
             travelWarrantsSqlRepository = new TravelWarrantsSqlRepository();
             travelRoutesSqlRepository = new TravelRoutesSqlRepository();
             servicesSqlRepository = new ServicesSqlRepository();
-            serviceItemsSqlRepository = new ServiceItemsSqlRepository();
 
             this.vehicle = vehicle;
 
