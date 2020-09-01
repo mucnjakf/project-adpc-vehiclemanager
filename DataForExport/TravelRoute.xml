@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TravelRoute Id="11">
-  <DateIssued>5/4/1997</DateIssued>
-  <TimeIssued>07:12:00</TimeIssued>
-  <Origin>Vinogradska</Origin>
-  <Destination>Stefanovec</Destination>
-  <KilometersTraveled>37.3</KilometersTraveled>
-  <AverageSpeed>50.3</AverageSpeed>
-  <SpentFuel>12</SpentFuel>
+<TravelRoute Id="5">
+  <DateIssued>5/5/2054</DateIssued>
+  <TimeIssued>07:00:00</TimeIssued>
+  <Origin>2907 Grand Avenue</Origin>
+  <Destination>3852 Arlington Avenue</Destination>
+  <KilometersTraveled>10000.12</KilometersTraveled>
+  <AverageSpeed>642.32</AverageSpeed>
+  <SpentFuel>11.23</SpentFuel>
 </TravelRoute>
