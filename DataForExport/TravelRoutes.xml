@@ -50,14 +50,4 @@
     <AverageSpeed>642.32</AverageSpeed>
     <SpentFuel>11.23</SpentFuel>
   </TravelRoute>
-  <TravelRoute>
-    <Id>28</Id>
-    <DateIssued>5/4/1997</DateIssued>
-    <TimeIssued>07:12:00</TimeIssued>
-    <Origin>Vinogradska</Origin>
-    <Destination>Stefanovec</Destination>
-    <KilometersTraveled>37.3</KilometersTraveled>
-    <AverageSpeed>50.3</AverageSpeed>
-    <SpentFuel>12</SpentFuel>
-  </TravelRoute>
 </TravelRoutes>

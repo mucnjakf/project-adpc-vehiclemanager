@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/project-adpc-vehiclemanager-pdfreport.iml" filepath="$PROJECT_DIR$/project-adpc-vehiclemanager-pdfreport.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pdf-report-module.iml" filepath="$PROJECT_DIR$/pdf-report-module.iml" />
     </modules>
   </component>
 </project>
