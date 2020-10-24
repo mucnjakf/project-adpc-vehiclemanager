@@ -3,7 +3,3 @@ Algebra University College - Semester V - Accessing Data from Program Code
 
 ----------------------------------------------------------
 ### Vehicle manager system implementation
-
-*Description
-
-----------------------------------------------------------
