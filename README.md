@@ -15,6 +15,7 @@ Vehicle Manager is a system for vehicle fleet management. User can manage driver
 - Microsoft SQL Server
 - ADO .NET System.Data.Sql
 - Entity Framework
+- XAML
 - Enterprise Library DAAB
 - Java Console App
 - MSSQL Java Database Connectivity
