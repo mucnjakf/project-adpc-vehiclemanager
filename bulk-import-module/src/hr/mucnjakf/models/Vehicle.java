@@ -1,28 +1,19 @@
-package mucnjakf.models;
+package hr.mucnjakf.models;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Embeddable
-@Entity
-@Table(name = "Vehicles")
 public class Vehicle {
 
-    @Id
-    private int id;
     private String make;
     private String model;
     private int yearOfManufacture;
     private int initialMileage;
     private boolean available;
 
-    public Vehicle() {
-    }
-
-    public int getId() {
-        return id;
+    public Vehicle(String make, String model, int yearOfManufacture, int initialMileage, boolean available) {
+        this.make = make;
+        this.model = model;
+        this.yearOfManufacture = yearOfManufacture;
+        this.initialMileage = initialMileage;
+        this.available = available;
     }
 
     public String getMake() {
@@ -45,15 +36,10 @@ public class Vehicle {
         return available;
     }
 
-    public String printToConsole() {
-        return "Vehicle: " + make + " " + model;
-    }
-
     @Override
     public String toString() {
         return "Vehicle{" +
-                "id=" + id +
-                ", make='" + make + '\'' +
+                "make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 ", yearOfManufacture=" + yearOfManufacture +
                 ", initialMileage=" + initialMileage +

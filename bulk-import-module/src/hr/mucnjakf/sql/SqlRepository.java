@@ -1,7 +1,7 @@
-package mucnjakf.sql;
+package hr.mucnjakf.sql;
 
-import mucnjakf.models.Driver;
-import mucnjakf.models.Vehicle;
+import hr.mucnjakf.models.Driver;
+import hr.mucnjakf.models.Vehicle;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

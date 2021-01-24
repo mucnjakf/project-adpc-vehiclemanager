@@ -1,4 +1,4 @@
-package mucnjakf.models;
+package hr.mucnjakf.models;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;

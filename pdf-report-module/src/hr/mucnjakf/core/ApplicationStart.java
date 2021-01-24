@@ -1,7 +1,7 @@
-package mucnjakf.core;
+package hr.mucnjakf.core;
 
-import mucnjakf.models.*;
-import mucnjakf.sql.SqlRepository;
+import hr.mucnjakf.models.*;
+import hr.mucnjakf.sql.SqlRepository;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.pdmodel.PDPage;

@@ -1,6 +1,6 @@
-package mucnjakf.csvreader;
+package hr.mucnjakf.csvreader;
 
-import mucnjakf.models.Driver;
+import hr.mucnjakf.models.Driver;
 
 import java.io.BufferedReader;
 import java.io.IOException;

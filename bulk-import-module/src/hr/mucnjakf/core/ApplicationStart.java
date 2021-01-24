@@ -1,15 +1,15 @@
-package mucnjakf.core;
+package hr.mucnjakf.core;
 
-import mucnjakf.models.Driver;
-import mucnjakf.models.Vehicle;
+import hr.mucnjakf.models.Driver;
+import hr.mucnjakf.models.Vehicle;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static mucnjakf.csvreader.DriversCsvReader.readDriversFromCsv;
-import static mucnjakf.csvreader.VehiclesCsvReader.readVehiclesFromCsv;
-import static mucnjakf.sql.SqlRepository.insertDrivers;
-import static mucnjakf.sql.SqlRepository.insertVehicles;
+import static hr.mucnjakf.csvreader.DriversCsvReader.readDriversFromCsv;
+import static hr.mucnjakf.csvreader.VehiclesCsvReader.readVehiclesFromCsv;
+import static hr.mucnjakf.sql.SqlRepository.insertDrivers;
+import static hr.mucnjakf.sql.SqlRepository.insertVehicles;
 
 public class ApplicationStart {
 

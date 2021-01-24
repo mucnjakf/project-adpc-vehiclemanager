@@ -1,6 +1,6 @@
-package mucnjakf.sql;
+package hr.mucnjakf.sql;
 
-import mucnjakf.models.*;
+import hr.mucnjakf.models.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

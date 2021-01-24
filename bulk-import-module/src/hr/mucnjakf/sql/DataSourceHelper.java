@@ -1,4 +1,4 @@
-package mucnjakf.sql;
+package hr.mucnjakf.sql;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 

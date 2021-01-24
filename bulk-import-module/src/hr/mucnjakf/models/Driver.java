@@ -1,4 +1,4 @@
-package mucnjakf.models;
+package hr.mucnjakf.models;
 
 public class Driver {
 
